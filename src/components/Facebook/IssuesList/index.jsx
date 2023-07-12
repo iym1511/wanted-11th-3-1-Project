@@ -9,42 +9,6 @@ const IssuesList = () => {
 
   const Data = useContext(IssueDataContext);
 
-  const [issueList, setIssueList] = useState([]); 
-  const [fetching, setFetching] = useState(false); // 추가 데이터를 로드하는지 아닌지를 담기위한 state
-  // let [page, setPage] = useState(1);
-  const [ page, getIssues ] = usePagination();
-  
-  useEffect(() => {
-    handleScroll();
-  }, []);
-  console.log(page)
-  useEffect(() => {
-    // scroll event listener 등록
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      // scroll event listener 해제
-      window.removeEventListener("scroll", handleScroll);
-    };
-  });
-
-  const getMoreIssues = () => {
-    // setPage(page + 1);
-    getIssues();
-    setFetching(true);
-    const newData = issueList.concat(Data);
-    setIssueList(newData);
-    setFetching(false)
-  }
-
-  const handleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight;
-    const scrollTop = document.documentElement.scrollTop;
-    const clientHeight = document.documentElement.clientHeight;
-    if (scrollTop + clientHeight >= scrollHeight && fetching === false) {
-      getMoreIssues();
-    }
-  };
-
   return (  
     <div>
       {Data.map((data, index) => (

@@ -23,7 +23,7 @@ const IssuesAPI = ({ children }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
-
+ 
   const getMoreIssues = async () => {
     // getIssues();
     setFetching(true);
