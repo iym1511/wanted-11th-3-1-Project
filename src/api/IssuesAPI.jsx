@@ -3,13 +3,11 @@ import BASE_URL from "../constants/baseUrl";
 import { useEffect, useState } from "react";
 import { IssueDataContext } from "../modules/issueData";
 import Loading from "../pages/Loading";
-import { usePagination } from "../Hooks/usePagination";
 
 const IssuesAPI = ({ children }) => {
   const [data, setData] = useState([]);
   const [fetching, setFetching] = useState(false); // 추가 데이터를 로드하는지 아닌지를 담기위한 state
-  // let [page, setPage] = useState(1);
-  const [ page, getIssues ] = usePagination();
+  let [page, setPage] = useState(1);
 
   useEffect(() => {
     handleScroll();
@@ -25,7 +23,7 @@ const IssuesAPI = ({ children }) => {
   });
  
   const getMoreIssues = async () => {
-    // getIssues();
+    setPage((prev) => prev + 1)
     setFetching(true);
     await axios
       .get(`${BASE_URL}repos/facebook/react/issues`, {

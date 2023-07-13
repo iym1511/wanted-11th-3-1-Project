@@ -27,7 +27,7 @@ const Issues = (props) => {
     </ListBox>
     {(index + 1) % 4 === 0 && (
           <Ad href=" https://www.wanted.co.kr/ ">
-            <img src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"></img>
+            <img src="https://www.venturesquare.net/849432/%ec%9b%90%ed%8b%b0%eb%93%9c%eb%9e%a9"></img>
           </Ad>
         )}
     </>
