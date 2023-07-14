@@ -6,7 +6,6 @@ import Detail from "./pages/Detail";
 import Layout from "./components/layout/Layout";
 
 function App() {
-  
   const router = createBrowserRouter([
     {
       path: "/",
