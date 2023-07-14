@@ -9,5 +9,6 @@ export const IssueProvider = ({children}) => {
     issues,
     setIssues,
   };
+  
   return <IssuesContext.Provider value={contextValue}>{children}</IssuesContext.Provider>
 }
