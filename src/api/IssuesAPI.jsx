@@ -21,34 +21,37 @@ const IssuesAPI = ({ children }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   });
- 
+
+  const githubAxios = axios.create({
+    baseURL: `${BASE_URL}repos/facebook/react`,
+    headers: {
+        Accept: "application/vnd.github+json",
+        Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
+        "X-Github-Api-Version": "2022-11-28",
+    },
+  });
+
   const getMoreIssues = async () => {
-    setPage((prev) => prev + 1)
+    setPage((prev) => prev + 1);
     setFetching(true);
-    await axios
-      .get(`${BASE_URL}repos/facebook/react/issues`, {
-        headers: {
-          Accept: "application/vnd.github+json",
-          Authorization: `Bearer ${process.env.REACT_APP_GITHUB_TOKEN}`,
-          "X-Github-Api-Version": "2022-11-28",
-        },
+    try{
+      const response = await githubAxios
+      .get(`/issues`, {
         params: {
           state: "open",
           sort: "comments",
           page: page,
         },
-      })
-      .then((response) => {
-        const newData = data.concat(response.data);
-        setData(newData);
-      })
-      .catch((err) => {
-        console.log(err);
       });
+      const newData = data.concat(response.data);
+      setData(newData);
+    } catch(err) {
+      console.log(err)
+    }
     setFetching(false);
   };
 
-    const handleScroll = () => {
+  const handleScroll = () => {
     const scrollHeight = document.documentElement.scrollHeight;
     const scrollTop = document.documentElement.scrollTop;
     const clientHeight = document.documentElement.clientHeight;
@@ -56,8 +59,6 @@ const IssuesAPI = ({ children }) => {
       getMoreIssues();
     }
   };
-
-
 
   if (data.length > 0)
     return (

@@ -1,13 +1,35 @@
-import './App.css';
-import {RouterProvider} from 'react-router-dom';
-import Header from './components/layout/Header';
-import routerConfig from './router/router';
+import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+import IssuesList from "./components/Facebook/IssuesList";
+import Detail from "./pages/Detail";
+import Layout from "./components/layout/Layout";
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          path: "/",
+          element: <IssuesList />,
+        },
+        {
+          path: "/issue",
+          element: <IssuesList />,
+        },
+        {
+          path: "/detail/:id",
+          element: <Detail />,
+        },
+      ],
+    },
+  ]);
+
   return (
     <div>
-      <Header />
-      <RouterProvider router={routerConfig}/>
+      <RouterProvider router={router} />
     </div>
   );
 }

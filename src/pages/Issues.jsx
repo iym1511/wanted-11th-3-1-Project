@@ -7,7 +7,6 @@ const Issues = (props) => {
   const { data, index } = props;
 
   const navigate = useNavigate();
-  const Data = useContext(IssueDataContext);
 
   const handleClick = (e) => {
     navigate(`/detail/${e.number}`)

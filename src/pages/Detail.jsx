@@ -8,7 +8,7 @@ const Detail = () => {
   const Data = useContext(IssueDataContext);
   let { id } = useParams();
   const datalist = Data.find((data) => data.number === Number(id));
-  console.log(Data)
+
   return (
     <>
       <div>
