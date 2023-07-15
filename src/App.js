@@ -4,23 +4,24 @@ import { createBrowserRouter } from "react-router-dom";
 import IssuesList from "./components/Facebook/IssuesList";
 import Detail from "./pages/Detail";
 import Layout from "./components/layout/Layout";
+import { IssuesProvider } from "./context/IssuesProvider";
 
 function App() {
   const router = createBrowserRouter([
     {
-      path: "/",
+      path: '/',
       element: <Layout />,
       children: [
         {
-          path: "/",
-          element: <IssuesList />,
+          path: '',
+          element: (
+            <IssuesProvider>
+              <IssuesList />
+            </IssuesProvider>
+            ),
         },
         {
-          path: "/issue",
-          element: <IssuesList />,
-        },
-        {
-          path: "/detail/:id",
+          path: '/detail/:id',
           element: <Detail />,
         },
       ],
